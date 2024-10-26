@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обчислення значення b</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4A90E2;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+            background-color: #4A90E2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #357ABD;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Обчислення значення b</h1>
+<label for="numberA">Вхідні дані номер 1 (a):</label>
+<input type="number" id="numberA" min="1" max="100" required>
+
+<label for="numberC">Вхідні дані номер 2 (c):</label>
+<input type="number" id="numberC" min="1" max="100" required>
+
+<button onclick="calculateB()">Обчислити b</button>
+
+<div id="result"></div>
+
+<script>
+    function calculateB() {
+        // Отримуємо значення з полів введення
+        const a = parseInt(document.getElementById("numberA").value);
+        const c = parseInt(document.getElementById("numberC").value);
+
+        // Перевірка на дійсність значень
+        if (isNaN(a) || isNaN(c) || a < 1 || a > 100 || c < a || c > 100) {
+            document.getElementById("result").innerText = "Помилка: Введіть правильні значення для a та c (1 ≤ a ≤ 100, a ≤ c ≤ 100).";
+            return;
+        }
+
+        // Обчислюємо b
+        const b = 2 * c - a;
+
+        // Виводимо результат
+        document.getElementById("result").innerText = `Відповідь номер 1: ${b}`;
+    }
+</script>
+
+</body>
+</html>

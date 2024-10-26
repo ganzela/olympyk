@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Борги Аліси</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Обчислення боргів Аліси</h1>
+
+<label for="amountA"><p>Аліса має (a):</p></label>
+<input type="number" id="amountA" required>
+
+<label for="amountB"><p>Петрик винен (b):</p></label>
+<input type="number" id="amountB" required>
+
+<label for="amountC"><p>Світлана винна (c):</p></label>
+<input type="number" id="amountC" required>
+
+<label for="amountD"><p>Аліса винна Ромчику (d):</p></label>
+<input type="number" id="amountD" required>
+
+<button onclick="calculateDebt()">Обчислити</button>
+
+<div id="result"></div>
+
+<script>
+    function calculateDebt() {
+        // Отримуємо значення з полів введення
+        const a = parseInt(document.getElementById("amountA").value);
+        const b = parseInt(document.getElementById("amountB").value);
+        const c = parseInt(document.getElementById("amountC").value);
+        const d = parseInt(document.getElementById("amountD").value);
+
+        // Перевірка на дійсність значень
+        if (isNaN(a) || isNaN(b) || isNaN(c) || isNaN(d) || a < 1 || a > 100 || 
+            b < 1 || b > 100 || c < 1 || c > 100 || d < 1 || d > 100) {
+            document.getElementById("result").innerText = "Помилка: Введіть правильні значення (1 ≤ a, b, c, d ≤ 100).";
+            return;
+        }
+
+        // Обчислюємо кількість гривень, які залишаться в Аліси
+        const totalAmount = a + b + c - d;
+
+        // Виводимо результат
+        document.getElementById("result").innerText = `В Аліси буде: ${totalAmount} гривень.`;
+    }
+</script>
+
+</body>
+</html>

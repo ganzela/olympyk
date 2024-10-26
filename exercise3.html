@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Петрик та екзамен</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        input {
+            margin: 10px 0;
+            padding: 10px;
+            width: 200px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Задача: Петрик та екзамен</h1>
+
+<label for="amountA">Кількість легких задач (a):</label>
+<input type="number" id="amountA" required>
+
+<label for="amountB">Кількість складних задач (b):</label>
+<input type="number" id="amountB" required>
+
+<label for="amountX">Кількість легких задач, які не розв'язав (x):</label>
+<input type="number" id="amountX" required>
+
+<label for="amountY">Кількість складних задач, які не розв'язав (y):</label>
+<input type="number" id="amountY" required>
+
+<button onclick="calculateExamResult()">Перевірити результат</button>
+
+<div id="result"></div>
+
+<script>
+    function calculateExamResult() {
+        // Отримуємо значення з полів введення
+        const a = parseInt(document.getElementById("amountA").value);
+        const b = parseInt(document.getElementById("amountB").value);
+        const x = parseInt(document.getElementById("amountX").value);
+        const y = parseInt(document.getElementById("amountY").value);
+
+        // Перевірка на дійсність значень
+        if (isNaN(a) || isNaN(b) || isNaN(x) || isNaN(y) || a < 1 || b < 1 || 
+            x < 1 || x > a || y < 1 || y > b) {
+            document.getElementById("result").innerText = "Помилка: Введіть правильні значення.";
+            return;
+        }
+
+        // Обчислюємо кількість задач, які Петрик розв'язав
+        const solvedEasy = a - x; // легкі задачі, які розв'язав
+        const solvedHard = b - y; // складні задачі, які розв'язав
+
+        // Обчислюємо бали
+        const totalPoints = solvedEasy + (solvedHard * 2); // бали Петрика
+        const maxPoints = a + (b * 2); // максимальні бали
+
+        // Обчислюємо відсоток
+        const percentage = (totalPoints / maxPoints) * 100;
+
+        // Визначаємо результат
+        const result = percentage >= 51 ? "YES" : "NO";
+        
+        // Виводимо результат
+        document.getElementById("result").innerText = `Петрик склав екзамен: ${result}`;
+    }
+</script>
+
+</body>
+</html>
